@@ -6,7 +6,7 @@
 /*   By: dmendelo <dmendelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 20:53:49 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/06/25 20:11:11 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/07/16 17:54:48 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		main(int argc, char **argv)
 	while (get_next_line(fd, &line) == 1)
 	{
 		ft_putendl(line);
-	//	free(line);
+		free(line);
 	}
 	if (argc == 2)
 		close(fd);

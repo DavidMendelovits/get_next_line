@@ -6,7 +6,7 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 21:20:51 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/06/24 21:38:47 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/06/27 09:33:01 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strjoinch(char const *s1, char c)
 		return (NULL);
 	s1_length = ft_strlen(s1);
 	if (!(ret = ft_strnew(s1_length + 1)))
-    	return (NULL);
+		return (NULL);
 	i = -1;
 	while (++i < s1_length)
 		*(ret + i) = *(s1 + i);

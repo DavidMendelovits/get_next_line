@@ -6,13 +6,13 @@
 /*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 20:11:01 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/06/25 19:23:23 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/06/27 10:19:32 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_fd_lstadd(fd_list **alst, fd_list *new)
+void	ft_fd_lstadd(t_gnl **alst, t_gnl *new)
 {
 	new->next = *alst;
 	*alst = new;

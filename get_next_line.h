@@ -6,7 +6,7 @@
 /*   By: dmendelo <dmendelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 15:47:09 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/06/26 19:21:44 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/06/27 10:05:39 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,19 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define BUFF_SIZE 1
+# define BUFF_SIZE 1024
 
 # define NULLCHECK(x) if (!x) return (-1);
 
-int		get_next_line(const int fd, char **line);
-int		copy_until(char **dest, char *source, char c);
+typedef struct	s_int
+{
+	int		i;
+	int		ret;
+}				t_int;
+
+int				get_next_line(const int fd, char **line);
+int				copy_until(char **dest, char *source, char c);
+char			*concatenate_str(const char *buf, char *content);
+char			*shift_overflow(char *content, int i);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dmendelo <dmendelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 13:30:50 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/06/26 10:26:08 by dmendelo         ###   ########.fr       */
+/*   Updated: 2018/06/27 10:22:26 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@
 
 typedef struct		s_list
 {
-	void			*content;
-	size_t			content_size;
-	struct s_list	*next;
+	void				*content;
+	size_t				content_size;
+	struct s_list		*next;
 }					t_list;
 
-typedef	struct		fd_list
+typedef	struct		s_gnl
 {
 	int					fd;
 	char				*content;
-	struct	fd_list		*next;
-}					fd_list;
+	struct s_gnl		*next;
+}					t_gnl;
 
 void				ft_putchar(char c);
 void				ft_putchar_fd(char c, int fd);
@@ -90,7 +90,7 @@ int					ft_isdigit(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
 void				ft_lstadd(t_list **alst, t_list *new);
-void				ft_fd_lstadd(fd_list **alst, fd_list *new);
+void				ft_fd_lstadd(t_gnl **alst, t_gnl *new);
 void				*ft_dup(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));

@@ -3,11 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmendelo <dmendelo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmendelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/24 21:21:48 by dmendelo          #+#    #+#             */
-/*   Updated: 2018/06/26 19:40:22 by dmendelo         ###   ########.fr       */
-/*   Updated: 2018/06/25 20:19:02 by dmendelo         ###   ########.fr       */
+/*   Created: 2018/06/27 09:10:16 by dmendelo          #+#    #+#             */
+/*   Updated: 2018/06/27 10:26:45 by dmendelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +26,6 @@ int				copy_until(char **dest, char *source, char c)
 		if (source[i] == c)
 			break ;
 	pos = i;
-//	*dest = ft_strsub(source, 0, i);
 	while (source[count] && count < i)
 	{
 		tmp = ft_strjoinch(*dest, source[count]);
@@ -40,18 +38,18 @@ int				copy_until(char **dest, char *source, char c)
 	return (pos);
 }
 
-static fd_list	*find_in_rolodex(fd_list **file, int fd)
+static t_gnl	*find_in_rolodex(t_gnl **file, int fd)
 {
-	fd_list  *temp;
+	t_gnl		*temp;
 
 	temp = *file;
-    while (temp)
+	while (temp)
 	{
 		if (temp->fd == fd)
 			return (temp);
 		temp = temp->next;
 	}
-	temp = (fd_list *)malloc(sizeof(fd_list));
+	temp = (t_gnl *)malloc(sizeof(t_list));
 	temp->content = ft_strnew(1);
 	temp->fd = fd;
 	ft_fd_lstadd(file, temp);
@@ -88,30 +86,29 @@ char			*shift_overflow(char *content, int i)
 
 int				get_next_line(const int fd, char **line)
 {
-	int				i;
-	static  fd_list	*file;
-	fd_list			*current;
+	t_int			var;
+	static t_gnl	*file;
+	t_gnl			*current;
 	char			buf[BUFF_SIZE + 1];
-	int				ret;
-	char 			*temp;
-    
+	char			*temp;
+
 	if (fd < 0 || line == NULL || read(fd, buf, 0) < 0)
 		return (-1);
 	current = find_in_rolodex(&file, fd);
 	*line = ft_strnew(1);
-	while ((ret = read(fd, buf, BUFF_SIZE)))
+	while ((var.ret = read(fd, buf, BUFF_SIZE)))
 	{
-		buf[ret] = '\0';
+		buf[var.ret] = '\0';
 		temp = current->content;
 		NULLCHECK((current->content = concatenate_str(buf, temp)));
 		if (ft_strchr(buf, '\n'))
 			break ;
 	}
-	if (ret < BUFF_SIZE && !ft_strlen(current->content))
+	if (var.ret < BUFF_SIZE && !ft_strlen(current->content))
 		return (0);
-	i = copy_until(line, current->content, '\n');
-	(i < (int)ft_strlen(current->content))
-	? current->content = shift_overflow(&current->content[i + 1], i)  
+	var.i = copy_until(line, current->content, '\n');
+	(var.i < (int)ft_strlen(current->content))
+	? current->content = shift_overflow(&current->content[var.i + 1], var.i)
 	: ft_strclr(current->content);
 	return (1);
 }
